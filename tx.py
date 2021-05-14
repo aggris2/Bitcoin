@@ -146,13 +146,13 @@ class Tx:
         result += int_to_little_endian(self.locktime, 4)
         return result
 
-    def fee(self):
+    def fee(self, testnet=False):
         '''Returns the fee of this transaction in satoshi'''
-        input_sum, output = 0, 0
-        for tx_in in self.tx_ins
+        input_sum, output_sum = 0, 0
+        for tx_in in self.tx_ins:
             input_sum += tx_in.value(testnet=testnet)
-        for tx_out in self.tx_outs
-            output_sum += tx.out.amount
+        for tx_out in self.tx_outs:
+            output_sum += tx_out.amount
         return input_sum - output_sum
 
 
